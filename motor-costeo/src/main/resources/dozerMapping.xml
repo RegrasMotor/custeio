@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+
+<mapping map-id="request" map-null="false">
+		<class-a>com.prosegur.rulesEngine.services.soapService.model.costeo.RequestCosteo</class-a>
+        <class-b>com.prosegur.rulesEngine.factsmodel.costeo.FactRequest</class-b>
+        <field>
+            <a>ot.uid</a>
+            <b>ot.id</b>
+        </field>
+        <field>
+            <a>datosFacturacion.conceptosFacturacion</a>
+            <b>conceptosFacturacion</b>
+        </field>
+        <field>
+            <a>datosFacturacion.datos</a>
+            <b>datosFacturacion</b>
+        </field>
+</mapping>
+<mapping map-id="response" map-null="false">
+		<class-a>com.prosegur.rulesEngine.services.soapService.model.costeo.RequestCosteo</class-a>
+        <class-b>com.prosegur.rulesEngine.services.soapService.model.costeo.ResponseCosteo</class-b>
+        <field>
+            <a>uid</a>
+            <b>idCosteo</b>
+        </field>
+        <field>
+            <a>ot.uid</a>
+            <b>idOt</b>
+        </field>
+        <field>
+            <a>ot.clasificacion</a>
+            <b>idClasificacion</b>
+        </field>
+        <field>
+            <a>ot.cliente.id</a>
+            <b>idCliente</b>
+        </field>
+        <field>
+            <a>ot.subcliente.id</a>
+            <b>idSubcliente</b>
+        </field>
+        <field>
+            <a>ot.grupotarifario</a>
+            <b>idGrupoTarifario</b>
+        </field>
+</mapping>
+</mappings>

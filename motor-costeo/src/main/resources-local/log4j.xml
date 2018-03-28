@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- Appenders -->
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p [%d{dd/MM/yyyy HH:mm:ss}]: %c - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="CONSOLEFILE" class="org.apache.log4j.rolling.RollingFileAppender">
+		<rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
+			<param name="ActiveFileName" value="${catalina.base}/logs/motorCosteo-console.log" />  
+			<!-- The file to roll to, this is a fairly intelligent parameter, if the file ends in .gz, it gzips it, based on the date stamp it rolls at that time, default is yyyy-MM-dd, (rolls at midnight)
+			See: http://logging.apache.org/log4j/companions/extras/apidocs/org/apache/log4j/rolling/TimeBasedRollingPolicy.html -->
+			<param name="FileNamePattern" value="${catalina.home}/logs/motorCosteo/motorCosteo-console.%d{yyyy-ww}.log.gz" />
+		</rollingPolicy>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p [%d{dd/MM/yyyy HH:mm:ss}]: %c - %m%n" />
+		</layout>
+	</appender>
+		
+	<appender name="APPFILE" class="org.apache.log4j.rolling.RollingFileAppender">
+		<rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
+			<param name="ActiveFileName" value="${catalina.base}/logs/motorCosteo.log" />  
+			<!-- The file to roll to, this is a fairly intelligent parameter, if the file ends in .gz, it gzips it, based on the date stamp it rolls at that time, default is yyyy-MM-dd, (rolls at midnight)
+			See: http://logging.apache.org/log4j/companions/extras/apidocs/org/apache/log4j/rolling/TimeBasedRollingPolicy.html -->
+			<param name="FileNamePattern" value="${catalina.home}/logs/motorCosteo/motorCosteo.%d{yyyy-ww}.log.gz" />
+		</rollingPolicy>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p [%d{dd/MM/yyyy HH:mm:ss}]: %c - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="WM_AGENDA" class="org.apache.log4j.rolling.RollingFileAppender">
+		<rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
+			<param name="ActiveFileName" value="${catalina.base}/logs/motorCosteo-wm_agenda.log" />  
+			<!-- The file to roll to, this is a fairly intelligent parameter, if the file ends in .gz, it gzips it, based on the date stamp it rolls at that time, default is yyyy-MM-dd, (rolls at midnight)
+			See: http://logging.apache.org/log4j/companions/extras/apidocs/org/apache/log4j/rolling/TimeBasedRollingPolicy.html -->
+			<param name="FileNamePattern" value="${catalina.home}/logs/motorCosteo/motorCosteo-wm_agenda.%d{yyyy-ww}.log.gz" />
+		</rollingPolicy>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p [%d{dd/MM/yyyy HH:mm:ss.SSS}] [%r]: %m%n" />
+		</layout>
+	</appender>
+	
+	<!-- Loggers -->
+	<logger name="com.prosegur.rulesEngine.engine.audit" additivity="false">
+		<level value="TRACE" />
+		<appender-ref ref="WM_AGENDA"/>
+		<appender-ref ref="CONSOLE" />
+	</logger>
+	
+	<logger name="com.prosegur.rulesEngine.factsmodel.costeo" additivity="false">
+		<level value="TRACE" />
+		<appender-ref ref="WM_AGENDA"/>
+		<appender-ref ref="CONSOLE" />
+	</logger>	
+	
+
+	<logger name="com.prosegur.rulesEngine">
+		<level value="DEBUG" />
+		<appender-ref ref="APPFILE"/>
+	</logger>
+			
+	<!-- Root Logger -->
+	<root>
+		<priority value="INFO" />
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="CONSOLEFILE" />
+	</root>
+
+</log4j:configuration>

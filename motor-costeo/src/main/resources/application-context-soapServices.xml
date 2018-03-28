@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+						
+    <import resource="classpath:META-INF/cxf/cxf.xml" />
+    
+ 	<bean id="costeoImpl" class="com.prosegur.rulesEngine.services.soapService.impl.CosteoImpl" />
+ 	<bean id="pingFileServiceImpl" class="com.prosegur.rulesEngine.services.soapService.impl.PingFileServiceImpl" />
+	 
+	<bean id="jmsConfigSoapServiceCosteo" class="org.apache.cxf.transport.jms.JMSConfiguration">
+        <property name="connectionFactory" ref="jmsTibcoConnectionFactory" />
+        <property name="targetDestination" value="${jms.queue.request.costeo}" />
+        <property name="replyDestination" value="${jms.queue.response.costeo}" />
+	</bean>
+
+    <bean id="concurrentExecutor" class="java.util.concurrent.Executors" 
+        factory-method="newFixedThreadPool" 
+        destroy-method="shutdownNow">
+    	<constructor-arg value="${services.soap.jms.threadPoolSize}"/>
+	</bean>
+
+	<!-- 
+	<jaxws:endpoint id="costeoJMSEndPoint"
+    	address="jms://"
+   		implementor="#costeoImpl">
+   		<jaxws:executor>
+   			<ref bean="concurrentExecutor"/>
+   		</jaxws:executor>
+   		<jaxws:features>          
+            <bean class="org.apache.cxf.transport.jms.JMSConfigFeature">
+                <property name="jmsConfig" ref="jmsConfigSoapServiceCosteo"/>
+            </bean>
+        </jaxws:features>
+	</jaxws:endpoint>
+ 	-->
+ 	 
+	<jaxws:endpoint id="costeoHTTPEndPoint" 
+		implementor="#costeoImpl" 
+		address="/costeo" />
+
+	<jaxws:endpoint id="pingFileServiceHTTPEndPoint" 
+		implementor="#pingFileServiceImpl" 
+		address="/pingFileService" />
+</beans>
