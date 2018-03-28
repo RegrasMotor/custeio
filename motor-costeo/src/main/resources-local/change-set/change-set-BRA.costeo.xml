@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<change-set xmlns="http://drools.org/drools-5.0/change-set"
+            xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+            xs:schemaLocation="http://drools.org/drools-5.0/change-set http://anonsvn.jboss.org/repos/labs/labs/jbossrules/trunk/drools-api/src/main/resources/change-set-1.0.0.xsd" >
+	<add>
+<!-- 
+		<resource source="http://brdc1svpwa134:8080/guvnor/org.drools.guvnor.Guvnor/package/BRA.costeo.v2_9/LATEST" type="PKG" basicAuthentication="enabled" username="admin" password="admin"/>
+		<resource source="http://localhost:8085/guvnor-5.6.0.Final-tomcat-6.0/org.drools.guvnor.Guvnor/package/BRA.costeo.v3_1_GC020_D/LATEST" type="PKG" basicAuthentication="enabled" username="admin" password="admin"/>
+	 
+-->
+	 <resource source="http://localhost:8085/guvnor-5.6.0.Final-tomcat-6.0/org.drools.guvnor.Guvnor/package/BRA.costeo.v3_2_GC021/LATEST" type="PKG" basicAuthentication="enabled" username="admin" password="admin"/>
+		
+		<!--
+		<resource source="http://localhost:8085/guvnor-5.6.0.Final-tomcat-6.0/org.drools.guvnor.Guvnor/package/BRA.costeo.v3_1_GC020/LATEST" type="PKG" basicAuthentication="enabled" username="admin" password="admin"/>
+	
+		<resource source="http://brdc1svhwa070:8080/guvnor/org.drools.guvnor.Guvnor/package/BRA.costeo.v3_2_Desmemb/LATEST" type="PKG" basicAuthentication="enabled" username="admin" password="admin"/>
+		<resource source="http://localhost:8085/guvnor-5.6.0.Final-tomcat-6.0/org.drools.guvnor.Guvnor/package/BRA.costeo.v3_0_NovaEmpresa/LATEST" type="PKG" basicAuthentication="enabled" username="admin" password="admin"/-->
+		<!-- resource source="http://brdc1svpwa134:8080/guvnor/org.drools.guvnor.Guvnor/package/BRA.costeo.v2_9/LATEST" type="PKG" basicAuthentication="enabled" username="admin" password="admin"/ -->
+
+	</add> 
+</change-set>

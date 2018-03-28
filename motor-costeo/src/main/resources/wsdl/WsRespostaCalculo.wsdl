@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="ComunicaPeticionFinalizada">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="request" type="tns:PeticionFinalizadaRequest" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PeticionFinalizadaRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="IdCosteo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DireccionFichero" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Retorno" type="tns:EstadoRetorno" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EstadoRetorno">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Codigo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ComunicaPeticionFinalizadaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ComunicaPeticionFinalizadaResult" type="tns:PeticionFinalizadaResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PeticionFinalizadaResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Codigo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ComunicaPeticionFinalizadaSoapIn">
+    <wsdl:part name="parameters" element="tns:ComunicaPeticionFinalizada" />
+  </wsdl:message>
+  <wsdl:message name="ComunicaPeticionFinalizadaSoapOut">
+    <wsdl:part name="parameters" element="tns:ComunicaPeticionFinalizadaResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WsRespostaCalculoSoap">
+    <wsdl:operation name="ComunicaPeticionFinalizada">
+      <wsdl:input message="tns:ComunicaPeticionFinalizadaSoapIn" />
+      <wsdl:output message="tns:ComunicaPeticionFinalizadaSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WsRespostaCalculoSoap" type="tns:WsRespostaCalculoSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ComunicaPeticionFinalizada">
+      <soap:operation soapAction="http://tempuri.org/ComunicaPeticionFinalizada" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WsRespostaCalculoSoap12" type="tns:WsRespostaCalculoSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ComunicaPeticionFinalizada">
+      <soap12:operation soapAction="http://tempuri.org/ComunicaPeticionFinalizada" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WsRespostaCalculo">
+    <wsdl:port name="WsRespostaCalculoSoap" binding="tns:WsRespostaCalculoSoap">
+      <soap:address location="http://localhost:52945/WsRespostaCalculo.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WsRespostaCalculoSoap12" binding="tns:WsRespostaCalculoSoap12">
+      <soap12:address location="http://localhost:52945/WsRespostaCalculo.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
